@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+{% block page %}
+    {%trans%}Fichier{%endtrans%}
+{% endblock %}
+
+{% block body %}
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="list-files">
+                <a class="btn-upload btn btn-primary" id="cv_timesheet_1_date" href="2_image_texte">Ajouter</a>
+                <table class="table table-striped table-condensed table-bordered table-hover table-sm">
+                    <thead>
+                        <tr>
+                            <th>{{"Nom"|trans}}</th>
+                            <th>#</th>
+                        </tr>
+                    </thead>
+                    <tbody class="tbody-files">
+                        <tr class="item-line">
+                            <td><a href="toto.pdf" class="link-icon">{{'BodkfdklsffldfdljfdlfdfdljfdlfddklfkTOTO.pdf'|humanize}}</a></td>
+                            <td>
+                                <a  class="btn  btn-success download-link"><i class="icon-download-alt"></i></a>
+                                <a class="btn  btn-primary preview-link"><i class="icon-eye-open"></i></a>
+                                <a id="75" class="btn btn-danger delete-link" href="/base/app_dev.php/fichier/75/delete"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    
+{% endblock %}
+

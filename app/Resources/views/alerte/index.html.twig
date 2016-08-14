@@ -1,0 +1,51 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Alerte list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Entite</th>
+                <th>Entite_id</th>
+                <th>Url</th>
+                <th>Message</th>
+                <th>Actif</th>
+                <th>Date_creation</th>
+                <th>Date_modification</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for alerte in alertes %}
+            <tr>
+                <td><a href="{{ path('alerte_show', { 'id': alerte.id }) }}">{{ alerte.id }}</a></td>
+                <td>{{ alerte.entite }}</td>
+                <td>{{ alerte.entiteid }}</td>
+                <td>{{ alerte.url }}</td>
+                <td>{{ alerte.message }}</td>
+                <td>{% if alerte.actif %}Yes{% else %}No{% endif %}</td>
+                <td>{% if alerte.datecreation %}{{ alerte.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>{% if alerte.datemodification %}{{ alerte.datemodification|date('Y-m-d H:i:s') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('alerte_show', { 'id': alerte.id }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('alerte_edit', { 'id': alerte.id }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('alerte_new') }}">Create a new entry</a>
+        </li>
+    </ul>
+{% endblock %}

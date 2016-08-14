@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Fichier</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ fichier.id }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ fichier.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Table</th>
+                <td>{{ fichier.table }}</td>
+            </tr>
+            <tr>
+                <th>Table_id</th>
+                <td>{{ fichier.tableid }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ fichier.url }}</td>
+            </tr>
+            <tr>
+                <th>Extension</th>
+                <td>{{ fichier.extension }}</td>
+            </tr>
+            <tr>
+                <th>Date_creation</th>
+                <td>{% if fichier.datecreation %}{{ fichier.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('fichier_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('fichier_edit', { 'id': fichier.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

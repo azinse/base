@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h3 id="content-title" style="display: none;">{% set title = 'Commentaire'|trans ~ ' : ' ~ 'créaction'|trans %}{{title|upper}}</h3>
+                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+                    {{ form_errors(form) }}
+                    <div class="control-group">
+                        {{ form_label(form.commentaire,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.commentaire,{'attr':{'class':'span8 wysihtmleditor5','rows':'5'} }) }}
+                        {{ form_errors(form.commentaire) }}
+                        </div>
+                    </div>
+                    <div class="hidden">{{ form_rest(form) }}</div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success btn-save"><i class="icon-ok"></i>{{'Sauvegarder'|trans}}</button>
+                        <a class="btn btn-exit" {% if app.request.uri != app.session.get('previousUrl')%} href="{{app.session.get('previousUrl')}}" {% else %} href="{{app.session.get('expreviousUrl')}}" {% endif %}><i class="icon-arrow-left"></i>{%trans%}Quitter{%endtrans%}</a>
+                        
+                    </div>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

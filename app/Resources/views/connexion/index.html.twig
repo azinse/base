@@ -1,0 +1,59 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h3 id="content-title" style="display: none;">{% set title = 'Connexion'|trans ~ ' : ' ~ 'liste'|trans %}{{title|upper}}</h3>
+                {#<a id="" title="{{'add_action'|trans}}" class="btn btn-primary new-action"  href="{{path('connexion_new')}}"><i class="icon-plus"></i></a>#}
+                <table  class="liste display dataTable table table-condensed table-bordered table-striped" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>{{'Debut'|trans}}</th>
+                            <th>{{'Fin'|trans}}</th>
+                            <th>{{'IP'|trans}}</th>
+                            <th>{{'Session'|trans}}</th>
+                            <th>{{'Responsable'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                        <tr id="filterrow" class="hidden-phone">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="no-filtre"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{'Début'|trans}}</th>
+                            <th>{{'Fin'|trans}}</th>
+                            <th>{{'IP'|trans}}</th>
+                            <th>{{'Session'|trans}}</th>
+                            <th>{{'Responsable'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for connexion in connexions %}
+                        <tr class="item-line">
+                            <td>{% if connexion.datedebut %}{{ connexion.datedebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>{% if connexion.datefin %}{{ connexion.datefin|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>{{ connexion.ipconnexion }}</td>
+                            <td>{{ connexion.sessionid }}</td>
+                            <td>{{ connexion.auteur }}</td>
+                            <td>
+                                {#<a  class="btn btn-mini btn-primary" title="{{'show_action'|trans}}" href="{{ path('connexion_show', { 'id': connexion.id }) }}"><i class="icon-eye-open"></i></a>
+                                <a  class="btn btn-mini btn-success edit-action" title="{{'edit_action'|trans}}" href="{{ path('connexion_edit', { 'id': connexion.id }) }}"><i class="icon-edit"></i></a>#}
+                                <a id="{{connexion.id}}" title="{{'del_action'|trans}}" class="btn btn-mini btn-danger delete-link" href="{{ path('connexion_delete', { 'id': connexion.id }) }}"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

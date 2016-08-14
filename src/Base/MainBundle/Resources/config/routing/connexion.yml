@@ -1,0 +1,24 @@
+connexion_index:
+    path:     /
+    defaults: { _controller: "BaseMainBundle:Connexion:index" }
+    methods:  GET
+
+connexion_show:
+    path:     /{id}/show
+    defaults: { _controller: "BaseMainBundle:Connexion:show" }
+    methods:  GET
+
+connexion_new:
+    path:     /new
+    defaults: { _controller: "BaseMainBundle:Connexion:new" }
+    methods:  [GET, POST]
+
+connexion_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BaseMainBundle:Connexion:edit" }
+    methods:  [GET, POST]
+
+connexion_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BaseMainBundle:Connexion:delete" }
+    methods:  DELETE

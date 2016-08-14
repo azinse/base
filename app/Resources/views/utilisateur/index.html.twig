@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h3 id="content-title" style="display: none;">{% set title = 'Utilisateur'|trans ~ ' : ' ~ 'liste'|trans %}{{title|upper}}</h3>
+                <a id="" title="{{'add_action'|trans}}" class="btn btn-primary new-action"  href="{{path('utilisateur_new')}}" ><i class="icon-plus"></i></a>
+                <table  class="liste display dataTable table table-condensed table-bordered table-striped" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>{{'Identifiant'|trans}}</th>
+                            <th>{{'Email'|trans}}</th>
+                            <th>{{'Role'|trans}}</th>
+                            <th>{{'Groupe'|trans}}</th>
+                            <th>{{'Profil'|trans}}</th>
+                            <th>{{'Societe'|trans}}</th>
+                            <th>{{'Actif'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                        <tr id="filterrow" class="hidden-phone hidden-tablet">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="no-filtre"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{'Identifiant'|trans}}</th>
+                            <th>{{'Email'|trans}}</th>
+                            <th>{{'Role'|trans}}</th>
+                            <th>{{'Groupe'|trans}}</th>
+                            <th>{{'Profil'|trans}}</th>
+                            <th>{{'Societe'|trans}}</th>
+                            <th>{{'Actif'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for utilisateur in utilisateurs %}
+                        <tr class="item-line">
+                            <td>{{ utilisateur.username }}</td>
+                            <td>{{ utilisateur.email }}</td>
+                            <td>{{ utilisateur.groupeprincipal }}</td>
+                            <td>{%for gp in utilisateur.groupe%}{{gp.nom}}{%if not loop.last%}, {%endif%}{%endfor%}</td>
+                            <td>{{ utilisateur.personneid }}</td>
+                            <td>{%for st in utilisateur.societe%}{{st.nom}} {%endfor%}</td>
+                            <td>{% if utilisateur.enabled %}{{'Oui'|trans}}{% else %}{{'Non'|trans}}{% endif %}</td>
+                            <td>
+                                <a  class="btn btn-mini btn-primary" title="{{'show_action'|trans}}" href="{{ path('personne_show', { 'id': utilisateur.personneid.id }) }}"><i class="icon-eye-open"></i></a>
+                                <a  class="btn btn-mini btn-success edit-action" title="{{'edit_action'|trans}}" href="{{ path('utilisateur_edit', { 'id': utilisateur.id }) }}"><i class="icon-edit"></i></a>
+                                <a id="{{utilisateur.id}}" title="{{'del_action'|trans}}" class="btn btn-mini btn-danger delete-link" href="{{ path('utilisateur_delete', { 'id': utilisateur.id }) }}"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Menu</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ menu.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ menu.nom }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{% if menu.actif %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Class</th>
+                <td>{{ menu.class }}</td>
+            </tr>
+            <tr>
+                <th>Position</th>
+                <td>{{ menu.position }}</td>
+            </tr>
+            <tr>
+                <th>Niveau</th>
+                <td>{{ menu.niveau }}</td>
+            </tr>
+            <tr>
+                <th>Couleur</th>
+                <td>{{ menu.couleur }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('menu_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('menu_edit', { 'id': menu.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

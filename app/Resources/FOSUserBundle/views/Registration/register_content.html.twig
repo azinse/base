@@ -1,0 +1,47 @@
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+<div class="row-fluid">
+    <div class="span8 offset2">
+        <div class="ombrage" style="background-color: #fff; padding: 1%;">
+            <div class="alert alert-info" >{{'pass_length'|trans({},'messages')}}</div>
+            {{ form_start(form, {'method': 'post', 'action': path('fos_user_registration_register'), 'attr': {'class': 'fos_user_registration_register, form-horizontal'}}) }}
+                <legend>{{"Inscription"|trans({},'messages')|upper}}</legend>
+                {{ form_errors(form) }}
+                <div class="control-group">
+                    {{ form_label(form.email,'', { 'label_attr': {'class': 'control-label'} }) }}
+                    <div class="controls">
+                    {{ form_widget(form.email,{'attr':{'class':'input-xlarge'} }) }}
+                    {{ form_errors(form.email) }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    {{ form_label(form.username,'', { 'label_attr': {'class': 'control-label'} }) }}
+                    <div class="controls">
+                    {{ form_widget(form.username,{'attr':{'class':'input-xlarge'} }) }}
+                    {{ form_errors(form.username) }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    {{ form_label(form.plainPassword.first,'', { 'label_attr': {'class': 'control-label'} }) }}
+                    <div class="controls">
+                    {{ form_widget(form.plainPassword.first,{'attr':{'class':'input-xlarge'} }) }}
+                    {{ form_errors(form.plainPassword.first) }}
+                    </div>
+                </div>
+                <div class="control-group">
+                    {{ form_label(form.plainPassword.second,'', { 'label_attr': {'class': 'control-label'} }) }}
+                    <div class="controls">
+                    {{ form_widget(form.plainPassword.second,{'attr':{'class':'input-xlarge'} }) }}
+                    {{ form_errors(form.plainPassword.second) }}
+                    </div>
+                </div>
+                <input class="btn btn-primary" type="submit" value="{{ 'registration.submit'|trans }}" />
+            {{ form_end(form) }}
+            <a  href="{{ path('fos_user_security_login') }}">
+                <i class="icon-lock"></i>
+                <span>{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</span>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+societe_index:
+    path:     /
+    defaults: { _controller: "BaseMainBundle:Societe:index" }
+    methods:  GET
+
+client_index:
+    path:     /client
+    defaults: { _controller: "BaseMainBundle:Societe:index" }
+    methods:  GET
+
+structure_index:
+    path:     /structure
+    defaults: { _controller: "BaseMainBundle:Societe:index" }
+    methods:  GET
+    
+fournisseur_index:
+    path:     /fournisseur
+    defaults: { _controller: "BaseMainBundle:Societe:index" }
+    methods:  GET
+    
+soustraitant_index:
+    path:     /soustraitant
+    defaults: { _controller: "BaseMainBundle:Societe:index" }
+    methods:  GET
+    
+societe_show:
+    path:     /{id}/show
+    defaults: { _controller: "BaseMainBundle:Societe:show" }
+    methods:  GET
+
+societe_new:
+    path:     /new
+    defaults: { _controller: "BaseMainBundle:Societe:new" }
+    methods:  [GET, POST]
+
+societe_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BaseMainBundle:Societe:edit" }
+    methods:  [GET, POST]
+
+societe_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BaseMainBundle:Societe:delete" }
+    methods:  DELETE

@@ -1,0 +1,124 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <div class="row-fluid"> 
+                    <div class="span7">
+                        <h4 id="content-title" style="display: none;">{% set title = 'Adresse'|trans ~ ' : ' ~ 'modification'|trans %}{{title|upper}}</h4>
+                        {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'} }) }}
+                        {#{{ form_start(edit_form, {'action': ''~path('adresse_edit',{'id': }), 'attr': {'class': 'form-horizontal'} }) }}#}
+                            {{ form_errors(edit_form) }}
+                            <div class="control-group hidden">
+                                {{ form_label(edit_form.entite,'', { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.entite) }}
+                                {{ form_errors(edit_form.entite) }}
+                                </div>
+                            </div>
+                            <div class="control-group hidden">
+                                {{ form_label(edit_form.entite_id,'', { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.entite_id) }}
+                                {{ form_errors(edit_form.entite_id) }}
+                                </div>
+                            </div>
+                            <div class="control-group hidden">
+                                {{ form_label(edit_form.adresse,'', { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.adresse) }}
+                                {{ form_errors(edit_form.adresse) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                {{ form_label(edit_form.numero_rue,'', { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.numero_rue) }}
+                                {{ form_errors(edit_form.numero_rue) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                {{ form_label(edit_form.rue,'', { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.rue) }}
+                                {{ form_errors(edit_form.rue) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                {{ form_label(edit_form.code_postal,'', { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.code_postal) }}
+                                {{ form_errors(edit_form.code_postal) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                {{ form_label(edit_form.localite,'', { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.localite) }}
+                                {{ form_errors(edit_form.localite) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                {{ form_label(edit_form.departement,'', { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.departement) }}
+                                {{ form_errors(edit_form.departement) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                {{ form_label(edit_form.region,'', { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.region) }}
+                                {{ form_errors(edit_form.region) }}
+                                </div>
+                            </div>
+                            
+                            <div class="control-group  hidden">
+                                {{ form_label(edit_form.pays,'', { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.pays) }}
+                                {{ form_errors(edit_form.pays) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                {{ form_label(edit_form.code_pays,'Pays'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.code_pays,{'attr':{'class':'chzn-select'} }) }}
+                                {{ form_errors(edit_form.code_pays) }}
+                                </div>
+                            </div>
+                            <div class="control-group">
+                                {{ form_label(edit_form.adresse_facturation,'Adresse de facturation'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                                <div class="controls">
+                                {{ form_widget(edit_form.adresse_facturation) }}
+                                {{ form_errors(edit_form.adresse_facturation) }}
+                                </div>
+                            </div>
+                            
+                            <div class="hidden">{{ form_rest(edit_form) }}</div>
+                            <div class="form-actions">
+                                <button id="btn-save" type="submit" class="btn btn-success"><i class="icon-ok"></i>{{'Sauvegarder'|trans}}</button>
+                                
+                                <a class="btn btn-exit" {% if app.request.uri != app.session.get('previousUrl')%} href="{{app.session.get('previousUrl')}}" {% else %} href="{{app.session.get('expreviousUrl')}}" {% endif %}><i class="icon-arrow-left"></i>{%trans%}Quitter{%endtrans%}</a>
+                            </div>
+
+                        {{ form_end(edit_form) }}
+                    </div>
+                    <div class="span5 content-map" >
+                        <h4>{% set title2 = 'Google map'|trans%}{{title2|upper}}</h4>
+                        <div class="form-horizontal">
+                            <input style="font-size: 10px; font-weight: bold;" class="input-xlarge" id="geocomplete" type="text" placeholder="{{'Entrez votre adresse ici pour remplir le formulaire ci-contre'|trans}}" value="{{edit_form.vars.value.adresse}}">
+                            <input  type="button" class="btn find-location" value="{{'chercher'|trans}}">
+                        </div>
+                        <div class="map_canvas" style=" width: auto; height: 300px;margin: 10px 20px 10px 0;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+ 
+
+   
+        

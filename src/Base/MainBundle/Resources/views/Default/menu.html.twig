@@ -1,0 +1,38 @@
+<ul class="sidebar-menu">
+    <li class="sub-menu">
+        <a class="" href="{{path('accueil')}}">
+            <i class="icon-dashboard"></i>
+            <span>{{'Accueil'|trans}}</span>
+        </a>
+    </li>
+    <li class="sub-menu">
+        <a class="" href="{{path('agenda')}}">
+            <i class="icon-calendar"></i>
+            <span>{{'Agenda'|trans}}</span>
+        </a>
+    </li>
+    {% for menu in menus %}
+    <li class="sub-menu">
+        <a href="javascript:;" class="" >
+            <i class="{{menu['parent'].class}}"></i>
+            <span>{{menu['parent'].nom|capitalize|trans}}</span>
+            {%if menu['enfant']|length > 0%}
+            <span class="arrow"></span>
+            {% endif %}
+        </a>
+        {%if menu['enfant']|length > 0%}
+        <ul class="sub">
+            {% for m in menu['enfant']%}
+            <li><a class="" href="{%if m.url!='profil'%}{{path(m.url)}}{%else%}{{path('personne_show',{'id': app.user.personneid.id} )}}{%endif%}">{{m.nom|capitalize|trans}}</a></li>
+            {% endfor%}
+        </ul>
+        {% endif %}
+    </li>
+    {%endfor%} 
+    <li class="sub-menu">
+        <a class="" href="{{path('postit_index')}}">
+            <i class="icon-comments"></i>
+            <span>{{'Post it'|trans}}</span>
+        </a>
+    </li>
+</ul>

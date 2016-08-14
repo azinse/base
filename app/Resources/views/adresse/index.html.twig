@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h3 id="content-title" style="display: none;">{% set title = 'Adresse'|trans ~ ' : ' ~ 'liste'|trans %}{{title|upper}}</h3>
+                <a id="" title="{{'add_action'|trans}}" class="btn btn-primary new-action"  href="{{path('adresse_new')}}" ><i class="icon-plus"></i></a>
+                <table  class="liste display dataTable table table-condensed table-bordered table-striped" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>{{'Rue'|trans}}</th>
+                            <th>{{'code postal'|trans}}</th>
+                            <th>{{'Localite'|trans}}</th>
+                            <th>{{'Departement'|trans}}</th>
+                            <th>{{'Region'|trans}}</th>
+                            <th>{{'Pays'|trans}}</th>
+                            <th>{{'Creation'|trans}}</th>
+                            <th>{{'Responsable'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                        <tr id="filterrow" class="hidden-phone hidden-tablet">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="no-filtre"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{'Rue'|trans}}</th>
+                            <th>{{'code postal'|trans}}</th>
+                            <th>{{'Localite'|trans}}</th>
+                            <th>{{'Departement'|trans}}</th>
+                            <th>{{'Region'|trans}}</th>
+                            <th>{{'Pays'|trans}}</th>
+                            <th>{{'Creation'|trans}}</th>
+                            <th>{{'Responsable'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for adresse in adresses %}
+                        <tr class="item-line">
+                            <td>{{ adresse.numerorue }} {{ adresse.rue }}</td>
+                            <td>{{ adresse.codepostal }}</td>
+                            <td>{{ adresse.localite }}</td>
+                            <td>{{ adresse.departement }}</td>
+                            <td>{{ adresse.region }}</td>
+                            <td>{{ adresse.pays }}</td>
+                            <td>{% if adresse.datecreation %}{{ adresse.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>{{ adresse.auteur }}</td>
+                            <td>
+{#                                <a  class="btn btn-mini btn-primary" title="{{'show_action'|trans}}" href="{{ path('adresse_show', { 'id': adresse.id }) }}"><i class="icon-eye-open"></i></a>
+#}                                <a  class="btn btn-mini btn-success edit-action" title="{{'edit_action'|trans}}" href="{{ path('adresse_edit', { 'id': adresse.id }) }}"><i class="icon-edit"></i></a>
+                                <a id="{{adresse.id}}" title="{{'del_action'|trans}}" class="btn btn-mini btn-danger delete-link" href="{{ path('adresse_delete', { 'id': adresse.id }) }}"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,86 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h4 id="content-title" style="display: none;">{% set title = 'Utilisateur'|trans ~ ' : ' ~ 'création'|trans %}{{title|upper}}</h4>
+                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+                    {{ form_errors(form) }}
+                    <div class="control-group">
+                        {{ form_label(form.username,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.username) }}
+                        {{ form_errors(form.username) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.email,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.email) }}
+                        {{ form_errors(form.email) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.plainPassword.first,'Mot de passe'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.plainPassword.first) }}
+                        {{ form_errors(form.plainPassword.first) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.plainPassword.second,'Mot de passe (confirmation)'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.plainPassword.second) }}
+                        {{ form_errors(form.plainPassword.second) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.groupe,'Groupes', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.groupe,{'attr':{'class':'chzn-select'} }) }}
+                        {{ form_errors(form.groupe) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.groupe_principal,'Role'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.groupe_principal,{'attr':{'class':'chzn-select-deselect'} }) }}
+                        {{ form_errors(form.groupe_principal) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.personne_id,'Profil associé'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.personne_id,{'attr':{'class':'chzn-select-deselect'} }) }}
+                        {{ form_errors(form.personne_id) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.societe,'Société(s) associée(s)', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.societe,{'attr':{'class':'chzn-select'} }) }}
+                        {{ form_errors(form.societe) }}
+                        </div>
+                    </div>
+                    {%if app.user.hasGroupe('administrateur')%}
+                    <div class="control-group">
+                        {{ form_label(form.enabled,'Compte actif'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.enabled) }}
+                        {{ form_errors(form.enabled) }}
+                        </div>
+                    </div>
+                    {%endif%}
+                    <div class="hidden">{{ form_rest(form) }}</div>
+                    <div class="form-actions">
+                        <button id="btn-save" type="submit" class="btn btn-success"><i class="icon-ok"></i>{{'Sauvegarder'|trans}}</button>
+                        
+                        <a class="btn btn-exit" {% if app.request.uri != app.session.get('previousUrl')%} href="{{app.session.get('previousUrl')}}" {% else %} href="{{app.session.get('expreviousUrl')}}" {% endif %}><i class="icon-arrow-left"></i>{%trans%}Quitter{%endtrans%}</a>
+                    </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

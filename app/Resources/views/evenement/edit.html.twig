@@ -1,0 +1,99 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h4 id="content-title" style="display: none;">{% set title = 'Agenda'|trans ~ ' : ' ~ 'modification'|trans %}{{title|upper}}</h4>
+                {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'} }) }}
+                    {{ form_errors(edit_form) }}
+                    <div class="control-group">
+                        {{ form_label(edit_form.titre,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.titre) }}
+                        {{ form_errors(edit_form.titre) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.date_debut,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.date_debut) }}
+                        {{ form_errors(edit_form.date_debut) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.date_fin,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.date_fin) }}
+                        {{ form_errors(edit_form.date_fin) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.journee_entiere,'journee_entiere'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.journee_entiere) }}
+                        {{ form_errors(edit_form.journee_entiere) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.lieu,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.lieu) }}
+                        {{ form_errors(edit_form.lieu) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.description,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.description) }}
+                        {{ form_errors(edit_form.description) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.couleur_fond,'couleur_fond'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                            {% if evenement.couleurfond is null%}{% set bgcolor = "#"~calendar_bg %}{%else%}{% set bgcolor = evenement.couleurfond %}{%endif%}
+                            <div data-color-format="rgba" data-color="{{bgcolor}}" class="input-append color cp1">
+                                {{ form_widget(edit_form.couleur_fond,{'value': bgcolor,'attr':{'readonly':'readonly'} }) }}
+                                <span class="add-on"><i style="background-color: {{bgcolor}}"></i></span>
+                            </div>
+                        {{ form_errors(edit_form.couleur_fond) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.couleur_texte,'couleur_texte'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                            {% if evenement.couleurtexte is null%}{% set tcolor = "#ffffff" %}{%else%}{% set tcolor = evenement.couleurtexte %}{%endif%}
+                            <div data-color-format="rgba" data-color="{{tcolor}}" class="input-append color cp1">
+                                {{ form_widget(edit_form.couleur_texte,{'value': tcolor,'attr':{'readonly':'readonly'} }) }}
+                                <span class="add-on"><i style="background-color: {{tcolor}}"></i></span>
+                            </div>
+                        {{ form_errors(edit_form.couleur_texte) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.inactif,'Annuler', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.inactif) }}
+                        {{ form_errors(edit_form.inactif) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.invite,'Invités'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.invite,{'attr':{'class':'chzn-select'} }) }}
+                        {{ form_errors(edit_form.invite) }}
+                        </div>
+                    </div>
+                    <div class="hidden">{{ form_rest(edit_form) }}</div>
+                    <div class="form-actions">
+                        <button name="save" type="submit" class="btn btn-success btn-save"><i class="icon-ok"></i>{{'Sauvegarder'|trans}}</button>
+                        <a class="btn btn-exit" {% if app.request.uri != app.session.get('previousUrl')%} href="{{app.session.get('previousUrl')}}" {% else %} href="{{app.session.get('expreviousUrl')}}" {% endif %}><i class="icon-arrow-left"></i>{%trans%}Quitter{%endtrans%}</a>
+                    </div>
+
+                {{ form_end(edit_form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

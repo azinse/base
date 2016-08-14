@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h3 id="content-title" style="display: none;">{% set title = 'Societe'|trans ~ ' : ' ~ 'liste'|trans %}{{title|upper}}</h3>
+                <a id="" title="{{'add_action'|trans}}" class="btn btn-primary new-action"  href="{{path('societe_new')}}"><i class="icon-plus"></i></a>
+                <table  class="liste display dataTable table table-condensed table-bordered table-striped" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>{{'Type'|trans}}</th>
+                            <th>{{'Nom'|trans}}</th>
+                            <th>{{'Secteur'|trans}}</th>
+                            <th>{{'numero_identification'|trans}}</th>
+                            <th>{{'Telephone'|trans}}</th>
+                            <th>{{'Fax'|trans}}</th>
+                            <th>{{'Creation'|trans}}</th>
+                            <th>{{'Responsable'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                        <tr id="filterrow" class="hidden-phone">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="no-filtre"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{'Type'|trans}}</th>
+                            <th>{{'Nom'|trans}}</th>
+                            <th>{{'Secteur'|trans}}</th>
+                            <th>{{'numero_identification'|trans}}</th>
+                            <th>{{'Telephone'|trans}}</th>
+                            <th>{{'Fax'|trans}}</th>
+                            <th>{{'Creation'|trans}}</th>
+                            <th>{{'Responsable'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for societe in societes %}
+                        <tr class="item-line">
+                            <td>{{ societe.type }}</td>
+                            <td>{{ societe.nom }}</td>
+                            <td>{{ societe.secteur }}</td>
+                            <td>{{ societe.numeroidentification }}</td>
+                            <td>{{ societe.telephone }}</td>
+                            <td>{{ societe.fax }}</td>
+                            <td>{% if societe.datecreation %}{{ societe.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>{{ societe.auteur }}</td>
+                            <td>
+                                <a  class="btn btn-mini btn-primary" title="{{'show_action'|trans}}" href="{{ path('societe_show', { 'id': societe.id }) }}"><i class="icon-eye-open"></i></a>
+                                <a  class="btn btn-mini btn-success edit-action" title="{{'edit_action'|trans}}" href="{{ path('societe_edit', { 'id': societe.id }) }}"><i class="icon-edit"></i></a>
+                                <a id="{{societe.id}}" title="{{'del_action'|trans}}" class="btn btn-mini btn-danger delete-link" href="{{ path('societe_delete', { 'id': societe.id }) }}"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

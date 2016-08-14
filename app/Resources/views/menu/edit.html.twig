@@ -1,0 +1,69 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h3 id="content-title" style="display: none;">{% set title = 'Menu'|trans ~ ' : ' ~ 'modification'|trans %}{{title|upper}}</h3>
+                {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'} }) }}
+                    {{ form_errors(edit_form) }}
+                    <div class="control-group">
+                        {{ form_label(edit_form.parent,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.parent,{'attr':{'class':'chzn-select'} }) }}
+                        {{ form_errors(edit_form.parent) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.nom,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.nom) }}
+                        {{ form_errors(edit_form.nom) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.url,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.url) }}
+                        {{ form_errors(edit_form.url) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.position,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.position) }}
+                        {{ form_errors(edit_form.position) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.class,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.class, { 'attr': {'class': 'form-control fa-select border'} }) }}
+                        {{ form_errors(edit_form.class) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.couleur,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.couleur) }}
+                        {{ form_errors(edit_form.couleur) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.actif,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                            {{ form_widget(edit_form.actif) }}
+                            {{ form_errors(edit_form.actif) }}
+                        </div>
+                    </div>
+                    <div class="hidden">{{ form_rest(edit_form) }}</div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-success btn-save"><i class="icon-ok"></i>{{'Sauvegarder'|trans}}</button>
+                        <a class="btn btn-exit" {% if app.request.uri != app.session.get('previousUrl')%} href="{{app.session.get('previousUrl')}}" {% else %} href="{{app.session.get('expreviousUrl')}}" {% endif %}><i class="icon-arrow-left"></i>{%trans%}Quitter{%endtrans%}</a>
+                    </div>
+
+                {{ form_end(edit_form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

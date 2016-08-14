@@ -1,0 +1,212 @@
+<?php
+/*
+ * @Zinsè ATENOUKON
+ * 2016  * 
+ */
+namespace Base\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+/**
+ * Classe de gestion des portlets: petites notes post-it
+ *@author zinse
+ * 
+ * @ORM\Table(name="portlet")
+ * @ORM\Entity
+ * @HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="Base\MainBundle\Entity\PortletRepository")
+ */
+class Portlet {
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    protected $id;
+    
+    /**
+     * @var string $titre
+     *
+     * @ORM\Column(name="titre", type="string", nullable=false)
+     */
+    private $titre;
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="commentaire", type="text", nullable=true)
+     */
+    private $commentaire;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_creation", type="datetime", nullable=true)
+     */
+    private $date_creation;
+    
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="date_modification", type="datetime", nullable=true)
+     */
+    private $date_modification;
+       
+    /**
+     * @var Utilisateur
+     *
+     * @ORM\ManyToOne(targetEntity="Utilisateur")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="utilisateur_id", referencedColumnName="id")
+     * })
+     */
+    private $auteur;
+    
+
+    public function __construct() {
+        // On initialiser les date de création et modification
+        $this->setDateCreation(new \DateTime());
+        if ($this->getDateModification() == null) {
+            $this->setDateModification(new \DateTime());
+        }
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function updateDateModification() {
+        // update the modified time
+        $this->setDateModification(new \DateTime());
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return Portlet
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set commentaire
+     *
+     * @param string $commentaire
+     *
+     * @return Portlet
+     */
+    public function setCommentaire($commentaire)
+    {
+        $this->commentaire = $commentaire;
+
+        return $this;
+    }
+
+    /**
+     * Get commentaire
+     *
+     * @return string
+     */
+    public function getCommentaire()
+    {
+        return $this->commentaire;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     *
+     * @return Portlet
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->date_creation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime
+     */
+    public function getDateCreation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set dateModification
+     *
+     * @param \DateTime $dateModification
+     *
+     * @return Portlet
+     */
+    public function setDateModification($dateModification)
+    {
+        $this->date_modification = $dateModification;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModification
+     *
+     * @return \DateTime
+     */
+    public function getDateModification()
+    {
+        return $this->date_modification;
+    }
+
+    /**
+     * Set auteur
+     *
+     * @param \Base\MainBundle\Entity\Utilisateur $auteur
+     *
+     * @return Portlet
+     */
+    public function setAuteur(\Base\MainBundle\Entity\Utilisateur $auteur = null)
+    {
+        $this->auteur = $auteur;
+
+        return $this;
+    }
+
+    /**
+     * Get auteur
+     *
+     * @return \Base\MainBundle\Entity\Utilisateur
+     */
+    public function getAuteur()
+    {
+        return $this->auteur;
+    }
+}

@@ -1,0 +1,15 @@
+{% set porteletcolor = ['blue','green','orange','purple','red','yellow','white','blue-full','green-full','orange-full','purple-full','red-full','yellow-full','white-full']%}
+<div class="widget {{ random(porteletcolor)}}">
+    <div class="widget-title">
+        <h4><i class="icon-reorder"></i>{{'Post it'|trans}}</h4>
+        <div class="tools">
+            <a href="javascript:;" class="icon-chevron-down"></a>
+            <a href="{{path('commentaire_edit', { 'id': commentaire.id } )}}" class="btn btn-mini btn-success edit-action" title="{{'Modifier'|trans}}"><i class="icon-edit"></i></a>
+            <a href="{{path('commentaire_delete', { 'id': commentaire.id } )}}" class="btn btn-mini btn-danger delete-link" title="{{'Supprimer'|trans}}"><i class="icon-trash"></i></a>
+{#            <a class="icon-remove" href="javascript:;"></a>
+#}        </div>
+    </div>
+    <div class="widget-body portlet-scroll-1">
+        {{commentaire.commentaire}}
+    </div>
+</div>

@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Alerte</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ alerte.id }}</td>
+            </tr>
+            <tr>
+                <th>Entite</th>
+                <td>{{ alerte.entite }}</td>
+            </tr>
+            <tr>
+                <th>Entite_id</th>
+                <td>{{ alerte.entiteid }}</td>
+            </tr>
+            <tr>
+                <th>Url</th>
+                <td>{{ alerte.url }}</td>
+            </tr>
+            <tr>
+                <th>Message</th>
+                <td>{{ alerte.message }}</td>
+            </tr>
+            <tr>
+                <th>Actif</th>
+                <td>{% if alerte.actif %}Yes{% else %}No{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Date_creation</th>
+                <td>{% if alerte.datecreation %}{{ alerte.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Date_modification</th>
+                <td>{% if alerte.datemodification %}{{ alerte.datemodification|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('alerte_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('alerte_edit', { 'id': alerte.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

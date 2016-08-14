@@ -1,0 +1,51 @@
+services:
+#    base_main.example:
+#        class: Base\MainBundle\Example
+#        arguments: ["@service_id", "plain_value", %parameter%]
+    login_listener:
+        class: 'Base\MainBundle\Listener\LoginListener'
+        arguments: ['@security.token_storage','@security.authorization_checker', '@doctrine','@router','@service_container']
+        tags:
+            - { name: 'kernel.event_listener', event: 'security.interactive_login' }
+            
+    logout_listener:
+        class: 'Base\MainBundle\Listener\LogoutHandler'
+        arguments: ['@doctrine']
+#        tags:
+#            - { name: 'kernel.event_listener', event: 'security.interactive_login' }
+
+#   Avant chaque requête et après, on peut faire des actions
+    listener.requestresponse:
+        class: Base\MainBundle\Listener\RequestListener
+        arguments: [ '@service_container' ]
+        tags:
+          - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+          - { name: kernel.event_listener, event: kernel.response, method: onKernelResponse }
+      
+#   session_idle permet de déconnecter l'utilsation après un moment d'inactivité   
+    session_idle:
+        class: 'Base\MainBundle\Handler\SessionIdleHandler'
+        arguments: ["@session", '@security.token_storage','@security.authorization_checker', "@router", "@doctrine", %session_max_idle_time%, "@translator"]
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, method: onKernelRequest }
+            
+#   Détection d'un connexion réussie         
+    security.authentication.success_handler:
+        class:  'Base\MainBundle\Handler\AuthenticationSuccessHandler'
+        arguments:  ["@security.http_utils", {},"@doctrine","@router"]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+
+#   Détection d'une tentative de connexion échouée
+    security.authentication.failure_handler:
+        class:  'Base\MainBundle\Handler\AuthenticationFailureHandler'
+        arguments:  ["@http_kernel", "@security.http_utils", {}, "@logger"]
+        tags:
+            - { name: 'monolog.logger', channel: 'security' }
+            
+#    Calendar   
+    base.mainbundle.calendar_listener:
+        class: 'Base\MainBundle\Listener\CalendarEventListener'
+        tags:
+            - { name: kernel.event_listener, event: calendar.load_events, method: loadEvents }
+        arguments: ["@doctrine.orm.entity_manager","@session", '@security.token_storage', "@router"]

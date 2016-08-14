@@ -1,0 +1,44 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Connexion</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ connexion.id }}</td>
+            </tr>
+            <tr>
+                <th>Ip_connexion</th>
+                <td>{{ connexion.ipconnexion }}</td>
+            </tr>
+            <tr>
+                <th>Session_id</th>
+                <td>{{ connexion.sessionid }}</td>
+            </tr>
+            <tr>
+                <th>Date_debut</th>
+                <td>{% if connexion.datedebut %}{{ connexion.datedebut|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Date_fin</th>
+                <td>{% if connexion.datefin %}{{ connexion.datefin|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('connexion_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('connexion_edit', { 'id': connexion.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

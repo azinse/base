@@ -1,0 +1,71 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h3 id="content-title" style="display: none;">{% set title = 'Evenement'|trans ~ ' : ' ~ 'liste'|trans %}{{title|upper}}</h3>
+                <a id="" title="{{'add_action'|trans}}" class="btn btn-primary new-action"  href="{{path('evenement_new')}}"><i class="icon-plus"></i></a>
+                <table  class="liste display dataTable table table-condensed table-bordered table-striped" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>{{'Titre'|trans}}</th>
+                            <th>{{'date_debut'|trans}}</th>
+                            <th>{{'date_fin'|trans}}</th>
+                            <th>{{'journee_entiere'|trans}}</th>
+                            <th>{{'Lieu'|trans}}</th>
+                            <th>{{'Description'|trans}}</th>
+                            <th>{{'Creation'|trans}}</th>
+                            <th>{{'Responsable'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                        <tr id="filterrow" class="hidden-phone">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="no-filtre"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{'Titre'|trans}}</th>
+                            <th>{{'date_debut'|trans}}</th>
+                            <th>{{'date_fin'|trans}}</th>
+                            <th>{{'journee_entiere'|trans}}</th>
+                            <th>{{'Lieu'|trans}}</th>
+                            <th>{{'Description'|trans}}</th>
+                            <th>{{'Creation'|trans}}</th>
+                            <th>{{'Responsable'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for evenement in evenements %}
+                        <tr class="item-line">
+                            <td>{{ evenement.titre }}</td>
+                            <td>{% if evenement.datedebut %}{{ evenement.datedebut|date('Y-m-d H:i') }}{% endif %}</td>
+                            <td>{% if evenement.datefin %}{{ evenement.datefin|date('Y-m-d H:i') }}{% endif %}</td>
+                            <td>{{ evenement.lieu }}</td>
+                            <td>{{ evenement.description }}</td>
+                            <td>{% if evenement.datecreation %}{{ evenement.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>{{ evenement.auteur }}</td>
+                            <td>
+                                <a  class="btn btn-mini btn-primary" title="{{'show_action'|trans}}" href="{{ path('evenement_show', { 'id': evenement.id }) }}"><i class="icon-eye-open"></i></a>
+                                <a  class="btn btn-mini btn-success edit-action" title="{{'edit_action'|trans}}" href="{{ path('evenement_edit', { 'id': evenement.id }) }}"><i class="icon-edit"></i></a>
+                                <a id="{{evenement.id}}" title="{{'del_action'|trans}}" class="btn btn-mini btn-danger delete-link" href="{{ path('evenement_delete', { 'id': evenement.id }) }}"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

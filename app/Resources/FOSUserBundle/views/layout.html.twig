@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->
+<!--[if !IE]><!--> <html lang="fr"> <!--<![endif]-->
+<!-- BEGIN HEAD -->
+<meta charset="UTF-8" />
+        <title>{% block title %}Base{% endblock %}</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+        <meta content="" name="description" />
+        <meta content="" name="author" />
+        {% block stylesheets %}
+            {# css metro lab #}
+            <link href="{{ asset('assets/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet" />
+            <link href="{{ asset('assets/bootstrap/css/bootstrap-responsive.min.css') }}" rel="stylesheet" />
+            <link href="{{ asset('assets/font-awesome/css/font-awesome.css') }}" rel="stylesheet" />
+            <link href="{{ asset('css/style.css') }}" rel="stylesheet" />
+            <link href="{{ asset('css/style-responsive.css') }}" rel="stylesheet" />
+            {# Fin css metro lab #}
+        {% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <style type="text/css">   
+        .ombrage {
+          border: 5px solid #fff;
+          -moz-box-shadow: 8px 8px 12px #aaa; 
+          -webkit-box-shadow: 8px 8px 12px #aaa; 
+          box-shadow: 8px 8px 12px #555; 
+        } 
+        </style>
+
+        <!--[if lte IE 8]>
+          <style type="text/css">
+          .ombrage {
+            filter:progid:DXImageTransform.Microsoft.Shadow(color='#aaaaaa', Direction=135, Strength=12);
+            zoom: 1;
+          } 
+          </style>
+        <![endif]-->
+    </head>
+<!-- END HEAD -->
+<!-- BEGIN BODY -->
+<body class="lock">
+    <div class="lock-header">
+        <!-- BEGIN LOGO -->
+        <a class="center" id="logo" href="#">
+            <img class="center" alt="logo" src="{{ asset('img/logo.png') }}">
+        </a>
+        <!-- END LOGO -->
+    </div>
+    <div class="row-fluid">
+        <div class="span8 offset2">
+            <!--<div class="lock-wrap">-->
+            
+            <div class="row-fluid">
+                <div class="span8 offset2">
+                    <div class="ombrage" style="background-color: #fff;">
+                        <div>
+                            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                                <a href="{{ path('fos_user_security_logout') }}">
+                                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                                </a>
+                            {% else %}
+                                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+                            {% endif %}
+                        </div>
+                        <div class="alert  alert-info" style="margin-bottom: 0px;">
+                            {% if app.request.hasPreviousSession %}
+                                {% for type, messages in app.session.flashbag.all() %}
+                                    {% for message in messages %}
+                                        <div class="flash-{{ type }}">
+                                            {{ message }}
+                                        </div>
+                                    {% endfor %}
+                                {% endfor %}
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="margin-top: 20px;">
+                {% block fos_user_content %}
+                {% endblock fos_user_content %}
+            </div>
+        <!--</div>-->
+        </div>
+            <div class="span2"></div>
+    </div>
+    <script src="{{ asset('js/jquery-1.12.2.min.js') }}"></script>
+    <script src="{{ asset('assets/bootstrap/js/bootstrap.min.js') }}"></script>
+</body>
+</html>

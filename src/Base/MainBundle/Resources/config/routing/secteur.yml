@@ -1,0 +1,24 @@
+secteur_index:
+    path:     /
+    defaults: { _controller: "BaseMainBundle:Secteur:index" }
+    methods:  GET
+
+secteur_show:
+    path:     /{id}/show
+    defaults: { _controller: "BaseMainBundle:Secteur:show" }
+    methods:  GET
+
+secteur_new:
+    path:     /new
+    defaults: { _controller: "BaseMainBundle:Secteur:new" }
+    methods:  [GET, POST]
+
+secteur_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BaseMainBundle:Secteur:edit" }
+    methods:  [GET, POST]
+
+secteur_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BaseMainBundle:Secteur:delete" }
+    methods:  DELETE

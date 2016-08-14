@@ -1,0 +1,16 @@
+<div class="row-fluid">
+    <div class="span12">
+        <p>[{{evenement.auteur}}]{% if evenement.datecreation %} : {{ evenement.datecreation|localizeddate('medium', 'none', app.request.locale)}}{% endif %} 
+            {% if (app.user.id == evenement.auteur.id or app.user.hasGroupe('administrateur'))%} 
+            {% if( (evenement.datedebut|date('Y-m-d H:i') > "now"|date('Y-m-d H:i') or "now"|date('Y-m-d H:i') <= evenement.datefin|date('Y-m-d H:i') ) and not evenement.inactif )%} <a href="{{path('evenement_edit', { 'id': evenement.id } )}}" class="btn btn-mini btn-success edit-action" title="{{'Modifier'|trans}}"><i class="icon-edit"></i></a>{% endif %}
+            <a href="{{path('evenement_delete', { 'id': evenement.id } )}}" class="btn btn-mini btn-danger delete-link" title="{{'Supprimer'|trans}}"><i class="icon-trash"></i></a>
+            {% endif %}
+        </p>
+        <p><label>{{'Titre'|trans}} </label>: {{evenement.titre}}</p>
+        <p><label>{{'date_debut'|trans}} </label>: {% if evenement.datedebut %} {{ evenement.datedebut|localizeddate('medium', 'none', app.request.locale)}}{% endif %}
+        <p><label>{{'date_fin'|trans}} </label>: {% if evenement.datefin %} {{ evenement.datefin|localizeddate('medium', 'none', app.request.locale)}}{% endif %}
+        <p><label>{{'Lieu'|trans}} </label>: {{evenement.lieu}}</p>
+        <p><label>{{'journee_entiere'|trans}} </label>: {% if(evenement.journeeentiere) %}{{'Oui'|trans}}{% else %} {{'Non'|trans}} {% endif%}</p>
+        <p> {{evenement.description|raw}}</p>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h3 id="content-title" style="display: none;">{% set title = 'Groupe'|trans ~ ' : ' ~ 'liste'|trans %}{{title|upper}}</h3>
+                <a id="" title="{{'add_action'|trans}}" class="btn btn-primary new-action"  href="{{path('groupe_new')}}" ><i class="icon-plus"></i></a>
+                <table  class="liste display dataTable table table-condensed table-bordered table-striped" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>{{'Nom'|trans}}</th>
+                            <th>{{'Menu'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                        <tr id="filterrow" class="hidden-phone hidden-tablet">
+                            <th></th>
+                            <th></th>
+                            <th class="no-filtre"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{'Nom'|trans}}</th>
+                            <th>{{'Menu'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for groupe in groupes %}
+                        <tr class="item-line">
+                            <td>{{ groupe.nom }}</td>
+                            <td>{%for menu in groupe.menu%}{{ menu.nom }}{%if not loop.last%}, {%endif%}{%endfor%}</td>
+                            <td>
+{#                                <a  class="btn btn-mini btn-primary" title="{{'show_action'|trans}}" href="{{ path('groupe_show', { 'id': groupe.id }) }}"><i class="icon-eye-open"></i></a>
+#}                                <a  class="btn btn-mini btn-success edit-action" title="{{'edit_action'|trans}}" href="{{ path('groupe_edit', { 'id': groupe.id }) }}"><i class="icon-edit"></i></a>
+                                <a id="{{groupe.id}}" title="{{'del_action'|trans}}" class="btn btn-mini btn-danger delete-link" href="{{ path('groupe_delete', { 'id': groupe.id }) }}"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

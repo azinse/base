@@ -1,0 +1,332 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid">
+        <!-- BEGIN PROFILE PORTLET-->
+        <div class=" profile span12">
+            <div class="span2">
+                <div class="profile-photo">
+                    <img id="logo_img" {%if societe.logo is not null%}src="{{asset(societe.logo)}}"{%else%}src="{{asset('img/default-logo.png')}}"{%endif%} alt="">
+                    <a id="logo_societe_{{societe.id}}" href="1_image" class=" btn-upload edit" title="{{'Modifier'|trans}}">
+                        <i class="icon-pencil"></i>
+                    </a>
+                </div>
+                <!---------BEGIN TAB---------------------->
+                <div class="tabbable custom-tab tabs-left ">
+                    <!-- Only required for left/right tabs -->
+                    <ul class="nav nav-tabs tabs-left profile-photo">
+                        <li class="active">
+                            <a class="profile-features" style="width: auto; display: block;" href="#societe-tab_1" data-toggle="tab">
+                                <i class="icon-building"></i>
+                                <p class="info">{{'fiche_societe'|trans}}</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="profile-features" style="width: auto; display: block;" href="#societe-tab_2" data-toggle="tab">
+                                <i class=" icon-user"></i>
+                                <p class="info">{{'Interlocuteur'|trans}}</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="profile-features" style="width: auto; display: block;" href="#societe-tab_3" data-toggle="tab">
+                                <i class=" icon-calendar"></i>
+                                <p class="info">{{'Activite'|trans}}</p>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="profile-features" style="width: auto; display: block;" href="#societe-tab_4" data-toggle="tab">
+                                <i class=" icon-phone"></i>
+                                <p class="info">{{'Contacter'|trans}}</p>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <!---------------END TAB------------->
+            </div>
+            <div class="span10">
+                <div class="profile-head">
+                    <div class="span4">
+                        <h1>{{societe.nom|capitalize}}</h1>
+                        <p>{{societe.secteur}} </p>
+                    </div>
+
+                    <div class="span4">
+                        <ul class="social-link-pf">
+                            <li><a href="#">
+                                <i class="icon-facebook"></i>
+                            </a></li>
+                            <li><a href="#">
+                                <i class="icon-twitter"></i>
+                            </a></li>
+                            <li><a href="#">
+                                <i class="icon-linkedin"></i>
+                            </a></li>
+                        </ul>
+                    </div>
+
+                    <div class="span4">
+                        <a href="{{path('societe_edit', { 'id': societe.id } )}}" class="btn btn-edit btn-large pull-right mtop20 edit-action">{{'Modifier'|trans}} </a>
+                    </div>
+                </div>
+                <div class="space15"></div>
+                <div class="row-fluid">
+                    <div class="span12 bio">
+                        <div id="societe-tab" class="tab-content">
+                            <!-----------FICHE SOCIETE------------------------->
+                            <div class="tab-pane" id="societe-tab_1">
+                                <div  class="row-fluid">
+                                    <div class=" span12">
+                                        <!-- BEGIN BLANK PAGE PORTLET-->
+                                        {% set porteletcolor = ['blue','green','orange','purple','red','yellow','']%}
+                                        <div class="widget {{ random(porteletcolor)}}" style="opacity: 1;">
+                                            <div class="widget-title">
+                                                 <h4><i class="icon-reorder"></i>{{societe.nom }}</h4>
+                                              <span class="tools">
+                                                  <a href="javascript:;" class="icon-chevron-down"></a>
+                                              </span>
+                                            </div>
+                                            <div class="widget-body">
+                                                <div class="row-fluid">
+                                                    <div class="span6">
+                                                        <h3>{{'fiche_societe'|trans}}</h3>
+                                                        <p><label>{{'Nom'|trans}} </label>: {{societe.nom}}</p>
+                                                        <p><label>{{'Secteur'|trans}} </label>: {{'secteur'}}</p>
+                                                        <p><label>{{'numero_identification'|trans}} </label>: {{societe.numeroidentification}}</p>
+                                                        <p><label>{{'Telephone'|trans}} </label>: {{societe.telephone}}</p>
+                                                        <p><label>{{'Fax'|trans}} </label>: {{societe.fax}}</p>
+                                                        <p><label>{{'Email'|trans}} </label>: <a class="btn-email" href="#" ><i class="btn-email-param" style="display: none;">{{societe.email}}</i>{{societe.email}}</a></p>
+                                                        <p><label>{{'Site'|trans}} </label>: {{societe.site}}</p>
+                                                        <div class="space15"></div>
+                                                        <strong>{{'Adresse de facturation'|trans}}</strong><br>
+                                                        {%if adressef!=null%}
+                                                            <i>{%if adressef.datecreation%}{{adressef.datecreation|localizeddate('medium', 'none', app.request.locale,NULL,'MMMM Y' )|capitalize}}{%endif%}:</i>
+                                                            {{adressef.adresse}}&nbsp;&nbsp;
+                                                            <a href="{{path('adresse_edit', { 'id': adressef.id } )}}" class="btn btn-mini btn-success edit-action" title="{{'Modifier'|trans}}"><i class="icon-edit"></i></a>
+                                                        {%endif%}
+                                                        <div class="space15"></div>
+                                                    </div>
+                                                    <div class="span6">
+                                                        <h3>{{'apropos'|trans}} {{societe.nom|capitalize}}</h3>
+                                                        <p>{{societe.presentation|raw}}</p>
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <!-- END BLANK PAGE PORTLET-->
+                                    </div>
+                                </div>
+                                <div class="row-fluid">
+                                    
+                                </div>
+                            </div>
+                            <!------------------CONTACT---------------------->
+                            <div class="tab-pane" id="societe-tab_2">
+                                <div id="draggable_portlets" class="row-fluid ui-sortable">
+                                    <div class="span12 column sortable">
+                                        <a id="entite_societe-entiteid_{{societe.id}}" class="btn btn-primary new-action"  href="{{path('personne_new')}}"><i class="icon-plus-sign"></i>{{'nouveau_contact'|trans}}</a>
+                                        <div class="space15"></div>
+                                        <!-- BEGIN BLANK PAGE PORTLET-->
+                                        {% set porteletcolor = ['blue','green','orange','purple','red','yellow','']%}
+                                        {%for contact in contacts%}
+                                        <div class="widget {{ random(porteletcolor)}}" style="opacity: 1;">
+                                            <div class="widget-title">
+                                                 <h4><i class="icon-reorder"></i>{{contact.nom ~ ' ' ~ contact.prenom}}</h4>
+                                              <span class="tools">
+                                                  <a href="javascript:;" class="icon-chevron-down"></a>
+                                                  <a  class="" title="{{'show_action'|trans}}" href="{{ path('personne_show', { 'id': contact.id }) }}"><i class="icon-eye-open"></i></a>
+                                                  <a  class="edit-action" title="{{'edit_action'|trans}}" href="{{ path('personne_edit', { 'id': contact.id }) }}"><i class="icon-edit"></i></a>
+                                                  <a id="{{contact.id}}" title="{{'del_action'|trans}}" class="delete-link" href="{{ path('personne_delete', { 'id': contact.id }) }}"><i class="icon-trash"></i></a>
+                                              </span>
+                                            </div>
+                                            <div class="widget-body">
+                                                <div class="row-fluid portlet-scroll-1">
+                                                    <div class="span4">
+                                                        <h3>{{'Biographie'|trans}}</h3>
+                                                        <p><label>{{'Prenom'|trans}} </label>: {{contact.prenom}}</p>
+                                                        <p><label>{{'Nom'|trans}} </label>: {{contact.nom}}</p>
+                                                        <p><label>{{'Fonction'|trans}} </label>: {{contact.fonction}}</p>
+                                                        <p><label>{{'Email'|trans}} </label>: <a class="btn-email" href="#" ><i class="btn-email-param" style="display: none;">{{contact.email}}</i>{{contact.email}}</a></p>
+                                                        <p><label>{{'Telephone'|trans}} </label>: {{contact.telephone}}</p>
+                                                        <p><label>{{'Mobile'|trans}} </label>: {{contact.mobile}}</p>
+                                                        <p><label>{{'Anniversaire'|trans}} </label>: {%if contact.datenaissance%}{{contact.datenaissance| localizeddate('medium', 'none', app.request.locale )}}{%endif%}</p>
+                                                        <div class="space15"></div>
+                                                    </div>
+                                                    <div class="span4">
+                                                        <h3>{{'dernier_rdv'|trans}} <a title="{{'Nouveau rdv'|trans}}" id="entite_personne-entiteid_{{contact.id}}" class="btn btn-mini btn-primary new-action"  href="{{path('evenement_new')}}"><i class="icon-plus-sign"></i></a></h3>
+                                                        {%if contactevenements[contact.id] is defined and contactevenements[contact.id] is not empty%}
+                                                        {%for event in contactevenements[contact.id]%}
+                                                            {% include 'evenement/include.html.twig' with {'evenement': event}%}
+                                                        <div class="space15"></div>
+                                                        {%endfor%}
+                                                        {%endif%}
+                                                    </div>
+                                                    <div class="span4">
+                                                        <h3>{{'dernier_commentaire'|trans}} <a title="{{'Nouveau commentaire'|trans}}" id="entite_personne-entiteid_{{contact.id}}" class="btn btn-mini btn-primary new-action"  href="{{path('commentaire_new')}}"><i class="icon-plus-sign"></i></a></h3>
+                                                        {%if contactcommentaires[contact.id] is defined and contactcommentaires[contact.id] is not empty%}
+                                                        {%for com in contactcommentaires[contact.id]%}
+                                                            {% include 'commentaire/include.html.twig' with {'commentaire': com}%}
+                                                        <div class="space15"></div>
+                                                        {%endfor%}
+                                                        {%endif%}
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        {%endfor%}
+                                        <!-- END BLANK PAGE PORTLET-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------------ACTIVITE----------------------->
+                            <div class="tab-pane" id="societe-tab_3">
+                                <div  class="row-fluid">
+                                    <div class=" span12">
+                                        <!-- BEGIN EVENEMENT PORTLET-->
+                                        {% set porteletcolor = ['blue','green','orange','purple','red','yellow','']%}
+                                        <div class="widget {{ random(porteletcolor)}}" style="opacity: 1;">
+                                            <div class="widget-title">
+                                                 <h4><i class="icon-reorder"></i>{{'Rendez-vous'|trans}}</h4>
+                                              <span class="tools">
+                                                  <a title="{{'Nouveau rdv'|trans}}" id="entite_societe-entiteid_{{societe.id}}" class="new-action"  href="{{path('evenement_new')}}"><i class="icon-plus-sign"></i></a>
+                                                  <a href="javascript:;" class="icon-chevron-down"></a>
+                                              </span>
+                                            </div>
+                                            <div class="widget-body">
+                                                <div class="row-fluid portlet-scroll-1">
+                                                    <div class="span6">
+                                                        <h4>{{'futur_rdv'|trans}} </h4>
+                                                        {%if fevenements is defined and fevenements is not empty%}
+                                                        {%for event in fevenements%}
+                                                            {% include 'evenement/include.html.twig' with {'evenement': event}%}
+                                                        <div class="space15"></div>
+                                                        {%endfor%}
+                                                        {%endif%}
+                                                    </div>
+                                                    <div class="span6">
+                                                        <h4>{{'dernier_rdv'|trans}}</h4>
+                                                        {#Derniers RDV#}
+                                                        {%if devenements is defined and devenements is not empty%}
+                                                        {%for event in devenements%}
+                                                            {% include 'evenement/include.html.twig' with {'evenement': event}%}
+                                                        <div class="space15"></div>
+                                                        {%endfor%}
+                                                        {%endif%}
+                                                    </div>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <!-- END EVENEMENT PORTLET-->
+                                        <!-- BEGIN COMMENTAIRE PORTLET-->
+                                        {% set porteletcolor = ['blue','green','orange','purple','red','yellow','']%}
+                                        <div class="widget {{ random(porteletcolor)}}" style="opacity: 1;">
+                                            <div class="widget-title">
+                                                 <h4><i class="icon-reorder"></i>{{'commentaire'|trans}}</h4>
+                                              <span class="tools">
+                                                  <a title="{{'Nouveau commentaire'|trans}}" id="entite_societe-entiteid_{{societe.id}}" class="new-action"  href="{{path('commentaire_new')}}"><i class="icon-plus-sign"></i></a>
+                                                  <a href="javascript:;" class="icon-chevron-down"></a>
+                                              </span>
+                                            </div>
+                                            <div class="widget-body">
+                                                <div class="row-fluid">
+                                                    <div class="span6">
+                                                        {%if commentaires is defined and commentaires is not empty%}
+                                                        {%for com in commentaires%}
+                                                            {% if loop.index is odd%}
+                                                            {% include 'commentaire/include.html.twig' with {'commentaire': com}%}
+                                                            <div class="space15"></div>
+                                                            {%endif%}
+                                                        {%endfor%}
+                                                        {%endif%}
+                                                    </div>
+                                                    <div class="span6">
+                                                        {%if commentaires is defined and commentaires is not empty%}
+                                                        {%for com in commentaires%}
+                                                            {% if loop.index is even%}
+                                                            {% include 'commentaire/include.html.twig' with {'commentaire': com}%}
+                                                            <div class="space15"></div>
+                                                            {%endif%}
+                                                        {%endfor%}
+                                                        {%endif%}
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- END COMMENTAIRE PORTLET-->
+                                    </div>
+                                </div>
+                            </div>
+                            <!------------------CONTACT----------------------->
+                            <div class="tab-pane" id="societe-tab_4">
+                                <div class="profile-contact">
+                                    <div class="row-fluid">
+                                        <div class="span6">
+                                            <h3>{{'Contact'|trans}}</h3>
+                                            <strong>{{societe.nom|capitalize}}</strong><br>
+                                            <p>{{'secteur'|capitalize}}</p><br>
+                                            <strong>{{'Adresse'|trans}}</strong><br>
+                                            {%if adresses|length ==1%}
+                                                <i>{%if adresses[0].datecreation%}{{adresses[0].datecreation|localizeddate('medium', 'none', app.request.locale,NULL,'MMMM Y' )|capitalize}}{%endif%}:</i>
+                                                {{adresses[0].adresse}}&nbsp;&nbsp;
+                                                <a href="{{path('adresse_edit', { 'id': adresses[0].id } )}}" class="btn btn-mini btn-success edit-action" title="{{'Modifier'|trans}}"><i class="icon-edit"></i></a>
+                                            {%else%}
+                                            <ul>
+                                            {%for adresse in adresses%}
+                                                <li> 
+                                                    {%if(loop.first)%}
+                                                        <i>{%if adresse.datecreation%}{{adresse.datecreation|localizeddate('medium', 'none', app.request.locale,NULL,'MMMM Y' )|capitalize}}{%endif%}:</i>
+                                                        {{adresse.adresse}}&nbsp;&nbsp;
+                                                        <a href="{{path('adresse_edit', { 'id': adresse.id } )}}" class="btn btn-mini btn-success edit-action" title="{{'Modifier'|trans}}"><i class="icon-edit"></i></a>
+                                                    {%else%}
+                                                        <hr/>
+                                                        <i>{%if adresse.datecreation%}{{adresse.datecreation| localizeddate('medium', 'none', app.request.locale,NULL,'MMMM Y' )|capitalize}}{%endif%}:</i>
+                                                        {{adresse.adresse}}&nbsp;&nbsp;
+                                                    {%endif%}
+                                                </li>
+                                            {%endfor%}
+                                            </ul>
+                                            {%endif%}
+                                            <br><br>
+                                            <strong>{{'Telephone'|trans}}</strong><br>
+                                            {{societe.telephone}}<br><br>
+                                            <strong>{{'Fax'|trans}}</strong><br>
+                                            {{societe.fax}}<br><br>
+                                            <strong>{{'Email'|trans}}</strong><br>
+                                            <a class="btn-email" href="#" ><i class="btn-email-param" style="display: none;">{{societe.email}}</i>{{societe.email}}</a>
+                                            <br><br>
+                                            <div class="space20"></div>
+                                        </div>
+                                        <div class="span6">
+                                            {%if adresses|length > 0%}
+                                                <div id="map" style="width: 500px; height: 400px;"></div>
+                                            {%endif%}
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space15"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END PROFILE PORTLET-->
+    </div>
+{% endblock %}
+{% block inner_page %}
+    {%if adresses|length > 0%}
+    <script>
+            // Définir les adresses: HTML content for the info window, latitude, longitude
+        var nom = "{{societe.nom}}";
+        var longitude = "{{adresses[0].longitude}}";
+        var latitude = "{{adresses[0].latitude}}";
+        var locations = [
+          ['<h4>'+ nom +'</h4>', latitude,longitude]
+        ];
+        var container = document.getElementById('map');   
+        showMap(container,locations);
+    </script>
+    {%endif%}
+{% endblock inner_page %}

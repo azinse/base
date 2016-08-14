@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <a id="new-event" title="{{'add_action'|trans}}" class="btn btn-primary new-action"  href="{{path('evenement_new')}}" style="display: none;"><i class="icon-plus"></i></a>
+            <!-- BEGIN BLANK PAGE PORTLET-->
+            {% set porteletcolor = ['blue','green','orange','purple','red','yellow','white']%}
+            <div class="widget {{ random(porteletcolor)}}">
+                <div class="widget-title">
+                    <h4><i class="icon-edit"></i>{% set title = 'calendrier'|trans %}{{title|upper}}</h4>
+                  <span class="tools">
+                      <a href="javascript:;" class="icon-chevron-down"></a>
+                      {#<a href="javascript:;" class="icon-remove"></a>#}
+                  </span>
+                </div>
+                <div class="widget-body">
+                    <div id="content-body">
+                        <h3 id="content-title" style="display: none;">{% set title = 'calendrier'|trans %}{{title|upper}}</h3>
+                        {% include 'ADesignsCalendarBundle::calendar.html.twig' %}
+                    </div>
+                </div>
+            </div>
+            <!-- END BLANK PAGE PORTLET-->
+        </div>
+    </div>
+{% endblock %}
+

@@ -1,0 +1,90 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h4 id="content-title" style="display: none;">{% set title = 'Agenda'|trans ~ ' : ' ~ 'création'|trans %}{{title|upper}}</h4>
+                {{ form_start(form, { 'attr': {'class': 'form-horizontal'} }) }}
+                    {{ form_errors(form) }}
+                    <div class="control-group">
+                        {{ form_label(form.titre,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.titre) }}
+                        {{ form_errors(form.titre) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.date_debut,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.date_debut) }}
+                        {{ form_errors(form.date_debut) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.date_fin,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.date_fin) }}
+                        {{ form_errors(form.date_fin) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.journee_entiere,'journee_entiere'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.journee_entiere) }}
+                        {{ form_errors(form.journee_entiere) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.lieu,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.lieu) }}
+                        {{ form_errors(form.lieu) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.description,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.description) }}
+                        {{ form_errors(form.description) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.couleur_fond,'couleur_fond'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                            {% set bgcolor = "#"~calendar_bg %}
+                            <div data-color-format="rgba" data-color="{{bgcolor}}" class="input-append color cp1">
+                                {{ form_widget(form.couleur_fond,{'value': bgcolor,'attr':{'readonly':'readonly'} }) }}
+                                <span class="add-on"><i style="background-color: {{bgcolor}}"></i></span>
+                            </div>
+                        {{ form_errors(form.couleur_fond) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.couleur_texte,'couleur_texte'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                            <div data-color-format="rgba" data-color="#ffffff" class="input-append color cp1">
+                                {{ form_widget(form.couleur_texte,{'value': '#ffffff','attr':{'readonly':'readonly'} }) }}
+                                <span class="add-on"><i style="background-color: #ffffff;"></i></span>
+                            </div>
+                        {{ form_errors(form.couleur_texte) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(form.invite,'Invités'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(form.invite,{'attr':{'class':'chzn-select'} }) }}
+                        {{ form_errors(form.invite) }}
+                        </div>
+                    </div>
+                    <div class="hidden">{{ form_rest(form) }}</div>
+                    <div class="form-actions">
+                        <button id="btn-save" type="submit" class="btn btn-success"><i class="icon-ok"></i>{{'Sauvegarder'|trans}}</button>
+                        <a class="btn btn-exit" {% if app.request.uri != app.session.get('previousUrl')%} href="{{app.session.get('previousUrl')}}" {% else %} href="{{app.session.get('expreviousUrl')}}" {% endif %}><i class="icon-arrow-left"></i>{%trans%}Quitter{%endtrans%}</a>
+                    </div>
+
+                {{ form_end(form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

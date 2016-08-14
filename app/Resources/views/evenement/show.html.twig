@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid">
+        <div class="span12">
+            <div id="content-body" class="bio">
+                <h3 id="content-title" style="display: none;">{% set title = 'Evenement'|trans ~ ' : ' ~ 'detail'|trans %}{{title|upper}}</h3>
+                <p>@{{evenement.auteur}}  {% if evenement.datecreation %}  [{{ evenement.datecreation|localizeddate('medium', 'none', app.request.locale)}}]{% endif %} 
+                    {% if (app.user.id == evenement.auteur.id or app.user.hasGroupe('administrateur'))%} 
+                    <a href="{{path('evenement_delete', { 'id': evenement.id } )}}" class="btn btn-mini btn-danger delete-link" title="{{'Supprimer'|trans}}"><i class="icon-trash"></i></a>
+                    {% endif %}
+                </p>
+                <hr />
+                <div class="row-fluid">
+                    <div class="span6">
+                        <h4>{{'Détail'|trans}}</h4>
+                        <p><label><strong>{{'Titre'|trans}} </strong></label>: {{evenement.titre}}</p>
+                        <p><label><strong>{{'Date debut'|trans}}</strong> </label>: {% if evenement.datedebut %} {{ evenement.datedebut|localizeddate('medium', 'short', app.request.locale)}}{% endif %}
+                        <p><label><strong>{{'Date fin'|trans}}</strong> </label>: {% if evenement.datefin %} {{ evenement.datefin|localizeddate('medium', 'none', app.request.locale)}}{% endif %}
+                        <p><label><strong>{{'Lieu'|trans}}</strong> </label>: {{evenement.lieu}}</p>
+                        {% if evenement.inactif%}<p><label><strong>{{'Statut'|trans}}</strong> </label>: {{'Annuler'|trans}} {% endif%}</p>
+                    </div>
+                    <div class="span6">
+                        {%if evenement.description!=null%}
+                         <h4>{{'Description'|trans}}</h4>
+                        <p>{{evenement.description|raw}}</p>
+                        {%endif%}
+                    </div>
+                </div>
+                <div class="form-actions"></div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

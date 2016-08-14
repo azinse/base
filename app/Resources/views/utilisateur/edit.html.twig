@@ -1,0 +1,85 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid"> 
+        <div class="span12"> 
+            <div id="content-body">
+                <h4 id="content-title" style="display: none;">{% set title = 'Utilisateur'|trans ~ ' : ' ~ 'modification'|trans %}{{title|upper}}</h4>
+                {{ form_start(edit_form, { 'attr': {'class': 'form-horizontal'} }) }}
+                    {{ form_errors(edit_form) }}
+                    <div class="control-group">
+                        {{ form_label(edit_form.username,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.username) }}
+                        {{ form_errors(edit_form.username) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.email,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.email) }}
+                        {{ form_errors(edit_form.email) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.plainPassword.first,'Mot de passe'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.plainPassword.first) }}
+                        {{ form_errors(edit_form.plainPassword.first) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.plainPassword.second,'Mot de passe (confirmation)'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.plainPassword.second) }}
+                        {{ form_errors(edit_form.plainPassword.second) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.groupe,'Groupes', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.groupe,{'attr':{'class':'chzn-select'} }) }}
+                        {{ form_errors(edit_form.groupe) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.groupe_principal,'', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.groupe_principal,{'attr':{'class':'chzn-select-deselect'} }) }}
+                        {{ form_errors(edit_form.groupe_principal) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.personne_id,'Profil associé'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.personne_id,{'attr':{'class':'chzn-select-deselect'} }) }}
+                        {{ form_errors(edit_form.personne_id) }}
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        {{ form_label(edit_form.societe,'Société(s) associée(s)', { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.societe,{'attr':{'class':'chzn-select'} }) }}
+                        {{ form_errors(edit_form.societe) }}
+                        </div>
+                    </div>
+                    {%if app.user.hasgroupe('administrateur')%}
+                    <div class="control-group">
+                        {{ form_label(edit_form.enabled,'Compte actif'|trans, { 'label_attr': {'class': 'control-label'} }) }}
+                        <div class="controls">
+                        {{ form_widget(edit_form.enabled) }}
+                        {{ form_errors(edit_form.enabled) }}
+                        </div>
+                    </div>
+                    {%endif%}
+                    <div class="hidden">{{ form_rest(edit_form) }}</div>
+                    <div class="form-actions">
+                        <button id="btn-save" type="submit" class="btn btn-success"><i class="icon-ok"></i>{{'Sauvegarder'|trans}}</button>
+                        <a class="btn btn-exit" {% if app.request.uri != app.session.get('previousUrl')%} href="{{app.session.get('previousUrl')}}" {% else %} href="{{app.session.get('expreviousUrl')}}" {% endif %}><i class="icon-arrow-left"></i>{%trans%}Quitter{%endtrans%}</a>
+                    </div>
+
+                {{ form_end(edit_form) }}
+            </div>
+        </div>
+    </div>
+{% endblock %}

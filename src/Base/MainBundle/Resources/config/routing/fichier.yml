@@ -1,0 +1,24 @@
+fichier_index:
+    path:     /
+    defaults: { _controller: "BaseMainBundle:Fichier:index" }
+    methods:  GET
+
+fichier_show:
+    path:     /{id}/show
+    defaults: { _controller: "BaseMainBundle:Fichier:show" }
+    methods:  GET
+
+fichier_new:
+    path:     /new
+    defaults: { _controller: "BaseMainBundle:Fichier:new" }
+    methods:  [GET, POST]
+
+fichier_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "BaseMainBundle:Fichier:edit" }
+    methods:  [GET, POST]
+
+fichier_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "BaseMainBundle:Fichier:delete" }
+    methods:  DELETE

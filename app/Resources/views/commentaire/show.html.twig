@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Commentaire</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commentaire.id }}</td>
+            </tr>
+            <tr>
+                <th>Categorie</th>
+                <td>{{ commentaire.categorie }}</td>
+            </tr>
+            <tr>
+                <th>Entite</th>
+                <td>{{ commentaire.entite }}</td>
+            </tr>
+            <tr>
+                <th>Entite_id</th>
+                <td>{{ commentaire.entiteid }}</td>
+            </tr>
+            <tr>
+                <th>Commentaire</th>
+                <td>{{ commentaire.commentaire }}</td>
+            </tr>
+            <tr>
+                <th>Date_creation</th>
+                <td>{% if commentaire.datecreation %}{{ commentaire.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Date_modification</th>
+                <td>{% if commentaire.datemodification %}{{ commentaire.datemodification|date('Y-m-d H:i:s') }}{% endif %}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('commentaire_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

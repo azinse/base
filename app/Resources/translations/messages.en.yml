@@ -1,0 +1,200 @@
+## YAML Template.
+---
+#Traduction générale
+
+#Boutons
+Valider: Submit
+Retour: Previous
+Supprimer: Delete
+Approuver: Approve
+Dupliquer: Clone
+Afficher: Show
+Modifier: Edit
+Imprimer: Print
+Fermer: Close
+Annuler: Cancel
+Ajouter: Add
+Enregistrer: record
+Sauvegarder: Save
+Sauvegarder et Afficher: Save & Show
+Visualiser: Preview
+Télécharger: Download
+Continuer: Continue
+
+#Titre
+add_doc: Add attachments
+server_response: Server message
+
+#Champs et libellé globalement utilisés
+Date création: created at
+Date modification: Modified at
+Référence: Reference
+Nom: Name
+Prénom: First name
+Nom complet: Name
+Pays: Country
+Ville: City
+Auteur: Author
+Libellé: Wording
+Date de début: Start date
+Date de fin: End Date
+Fiche %name%: %name% Sheet
+Edition: Edit
+Création: add
+Action: Action
+Tout: All
+Tâche:
+Titre: 
+#Menu
+Accueil: Home
+Cvtheque: Cvtheque
+Ventes: Sales
+Achats: Purchases
+Pilotage: Pilotage
+Paramètres: Settings
+Déconnexion: Logout
+Bienvenue: Welcome
+Activité: Activity
+Salarié: Employe
+#Sous menus
+Offres: Offer List
+Rechercher personne: Person List
+Rechercher sous-traitant: Subcontractor List
+Créer une offre: New Offer 
+Ajouter personne: New Person
+Groupes: Group List
+Utilisateurs: User List
+Sociétés: Company List
+Modifier son mot de passe: Change Password
+Ajouter sous-traitant: New Subcontractor
+Clients: Customer List
+Ajouter un client: New Customer
+Ajouter Un Client: New Customer
+Contrats: Contract List
+Conso planning: Consumption schedule
+Absence: Absence
+Note de frais: Expense report
+Timesheet: Timesheet
+Maladie: Sickness absence
+Prêt matériel: equipment loan
+Visite médicale: Medical examination
+#Autre
+Création: 
+Modification: 
+Période:
+Nbre km:
+Tx km*:
+Indemnité:
+Déplacements (hors avion) et hôtels:
+Avion:
+Restaurant et invitations:
+Frais de mission au forfait:
+Autre:
+Tx devise: Currency rate
+Total:
+Commentaire: Comment
+Timesheet de: Timesheet of
+Envoyer pour validation:
+Editée le: Published on
+Valider la NDF:
+Valider la Timesheet:
+Approuver:
+Refuser:
+En attente:
+Ancien client:
+Prospect:
+En cours:
+Terminé:
+Terminée:
+offre: offer
+Contrat client: Customer contract
+Responsable:
+Source:
+Extrait:
+Statut:
+Nouveau rapport d'activité:
+Détail sur les clients:
+Nombre:
+Détail et commentaire:
+#Entité
+Client: Customer
+Personne: Person
+Offre: offer
+Contrat: Contract
+Contrat de travail: Employment contract
+Choisir le contrat pour l'impression:
+Module:
+Numéro de fiche:
+Délégué(e):
+
+
+#Choix formulaire
+Matin: Morning
+Après-midi: Afternoon
+Congés payés:
+Congés payés:
+RTT:
+Congés exceptionnels:
+Maladie:
+Férié:
+Inter-contrat:
+Formation:
+Représentation commerciale:
+Congés sans solde:
+Congés paternité (11 jours ouvrables  ou 18 si naissance multiple incluant samedi, dimanche et jour férié):
+Mariage (4 jours ouvrés):
+Naissance (3 jours ouvrés pour le père):
+Décès conjoint ou enfant (2 jours ouvrés):
+Décès ascendant (grand-père et grand-mère - 2 jours ouvrés):
+Mariage d’un enfant (1 jour ouvré):
+Décès beau-père ou belle-mère (1 jour ouvré):
+Décès collatéraux jusqu’au 2ème degré - frère ou sœur(1 jour ouvré):
+Démission:
+Fin période d\'essai salarié:
+Fin période d\'essai employeur:
+Licenciement avec transac:
+Licenciement pour faute:
+Rupture conventionnelle:
+Recherche nom: Filter by name
+indemnité kilométrique:
+Menu entier:
+
+  
+#Messages
+Total: Total
+Votre compte est actuellement utilisé sur un autre ordinateur, veuillez vous reconnecter!:
+Cette page est protégée par son propriétaire: 
+Sécurité mise à jour avec succès!:
+Une entrée existe déjà pour cet utilisateur, vous pouvez la modifier dans la liste ci-dessus:
+Les dates que vous avez entrées sont incorrectes!:
+Suppression effectuée avec succès:
+Modifications enregistrées avec succès:
+La date de fin doit être supérieure à la date de début:
+La date butoir doit être supérieure à la date de début:
+Cette adresse Email est déjà utilisée:
+Ce nom d'utilisateur est déjà utilisé:
+Ce nom de groupe est déjà utilisé:
+Ce nom de société est déjà utilisé:
+
+success_title: Success!
+success_msg: Your requests have been taken into account.
+
+error_title: Erreur!
+error_msg: An error has occurred, make sure the data is correct and try again.
+delete_confirm_title: Are you sure?
+delete_confirm_msg: These  items will be permanently deleted and cannot be recovered. Are you sure?
+upload_complet: Upload complete.
+extension_error: You can't upload files of this type.
+size_directory_error: File size or upload dir error.
+
+#placehoder
+valid_from: Valid from
+valid_to: Valid to
+choix_options: Choose options
+choix_option: Choose option
+#Type de société
+Gestion:
+Client:
+Fournisseur:
+Sous-traitant:
+Autre:

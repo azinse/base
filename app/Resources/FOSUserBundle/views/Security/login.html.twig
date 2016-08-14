@@ -1,0 +1,99 @@
+{% extends "FOSUserBundle::layout.html.twig" %}
+
+{% trans_default_domain 'FOSUserBundle' %}
+
+{% block fos_user_content %}
+
+{#<div class="visible-desktop visible-tablet lock">
+    <form action="{{ path("fos_user_security_check") }}" method="post">
+        <legend style="color: white;">{{"Connexion"|trans|upper}}</legend>
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+        <div class="lock-wrap">
+            <div class="metro single-size gray">
+                {%if app.user is not null%}
+                    <img src="{{ asset(app.user.avatar) }}" alt="" style="height: 165px" >
+                {%else%}
+                <img src="{{ asset('img/default-avatar.jpg') }}" alt="" style="height: 165px" >
+                {%endif%}
+            </div>
+            <div class="metro double-size blue">
+                <div class="input-append lock-input">
+                    <input type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}" />
+                </div>
+            </div>
+            <div class="metro double-size green">
+                <div class="input-append lock-input">
+                    <input type="password" id="password" name="_password" required="required" placeholder="{{'security.login.password'|trans}}" />
+                    <button type="submit" class="btn tarquoise"><i class=" icon-arrow-right"></i></button>
+                </div>
+            </div>
+            <div class="metro double-size gray ">
+                <a href="#" class="user-position">
+                    <i class="icon-user"></i>
+                    <span>
+                        <label for="remember_me" class="checkbox" style="display: inline-block;">
+                            <input type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                            {{ 'security.login.remember_me'|trans }}
+                        </label>
+                    </span>
+                </a>
+            </div>
+            <div class="metro double-size orange">
+                <a href="{{path('fos_user_resetting_request')}}" class="user-position">
+                    <i class="icon-key"></i>
+                    <span>{% trans from "messages"%}pass_oublie ? {%endtrans%}</span>
+                </a>
+            </div>
+            <div class="metro single-size terques">
+                <a href="{{ path('fos_user_registration_register') }}" class="locked" style="color: white; text-decoration: none;">
+                    <i class="icon-lock"></i>
+                    <span>{% trans from "messages"%}s_inscrire{%endtrans%}</span>
+                </a>
+            </div>
+        </div>
+    </form>
+</div>#}
+<div class="row-fluid">
+    <div class="span8 offset2">           
+            <div class="ombrage" style="background-color: #fff; padding: 1%;">
+                <form class="form-horizontal" action="{{ path("fos_user_security_check") }}" method="post">
+                    <legend>{{"Connexion"|trans({},'messages')|upper}}</legend>
+                    {% if error %}
+                        <div class="alert alert-error">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+                    {% endif %}
+                    <input type="hidden" name="_csrf_token" value="{{ csrf_token }}" />
+                    <div class="control-group">
+                        <label class="control-label required" for="username">{{ 'security.login.username'|trans }}</label>
+                        <div class="controls">
+                            <input  class="input-xlarge" type="text" id="username" name="_username" value="{{ last_username }}" required="required" placeholder="{{ 'security.login.username'|trans }}" />
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label class="control-label required" for="password">{{ 'security.login.password'|trans }}</label>
+                        <div class="controls">
+                            <input  class="input-xlarge" type="password" id="password" name="_password" required="required" placeholder="{{ 'security.login.password'|trans }}"/>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <div class="controls">
+                            <label for="remember_me" class="checkbox control-label">
+                                <input style="margin-left: 0px;" type="checkbox" id="remember_me" name="_remember_me" value="on" />
+                                {{ 'security.login.remember_me'|trans }}
+                            </label>
+                        </div>
+                    </div>
+                    <input class="btn btn-primary" type="submit" id="_submit" name="_submit" value="{{ 'security.login.submit'|trans }}" />
+                </form>
+                <a  href="{{path('fos_user_resetting_request')}}">
+                    <i class="icon-key"></i>
+                    <span>{% trans from "messages"%}pass_oublie ? {%endtrans%}</span>
+                </a>
+                <br />
+                <a  href="{{ path('fos_user_registration_register') }}">
+                    <i class="icon-lock"></i>
+                    <span>{% trans from "messages"%}s_inscrire{%endtrans%}</span>
+                </a>    
+            </div>
+    </div>
+</div>
+{% endblock fos_user_content %}

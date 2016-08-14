@@ -1,0 +1,240 @@
+## YAML Template.
+---
+Previous: Précédent
+Next: Suivant
+#Should containt at least 1 upper case letter, 1 lower case letter, 1 number, 1 special character , 8 characters in length:
+pass_length: Au moins 1 lettre majuscule , 1 lettre minuscule , 1 chiffre , 1 caractère spécial et 8 caractères
+Add: Ajouter
+Delete: Supprimer
+Nouveau commentaire: 
+Nouveau rdv: Nouveau rendez-vous
+nouveau_contact: Ajouter un contact
+Voir tout: 
+
+#DropZone
+Drop files here or click to upload: Glissez et déposez les fichiers ici ou clickez pour charger.
+Your browser does not support drag'n'drop file uploads: Drag'n'drop n'est pas prise en charge par votre navigateur. 
+Please use the fallback form below to upload your files like in the olden days: 
+You can't upload files of this type: Ce type de fichier n'est pas autorisé.
+File is too big: La taille du fichier est trop élevée.
+Max files exceeded: Nombre max de fichier atteint.
+Remove File: Supprimer
+Cancel: Annuler
+
+#Message
+success_title: Succès!
+success_msg: Vos demandes ont bien été prises compte.
+error_title: Erreur!
+error_msg: Une erreur s'est produite, assurez-vous que les données sont correctes et essayez à nouveau.
+delete_confirm_title: Êtes-vous sûr?
+delete_confirm_msg: Les éléments seront définitivement supprimés et ne peuvent pas être récupérés. Êtes-vous sûr?
+upload_complet: Chargement complet
+extension_error: Extension de fichier non autorisée.
+size_directory_error: Erreur taille de fichier ou dossier destination. 
+Une signature est déjà enregistrée pour cette adresse:
+deconnexion_auto: Vous avez été automatiquement déconnecté(e) après un moment d'inactivité.
+compte_utilise: Votre compte est actuellement utilisé sur un autre ordinateur, veuillez vous reconnecter.
+
+#Titre
+add_doc: Joindre des documents 
+Modification: 
+Création:   
+modification: 
+création:
+Détail:
+Nouveau message: 
+server_response: Message du serveur   
+apropos: A propos de
+Biographie: 
+Experience:
+Formation:
+user_info: Information compte
+motdepasse: Mot de passe
+fiche_societe: Fiche société
+dernier_commentaire: Dernier commentaire
+dernier_rdv: Dernier rendez-vous
+futur_rdv: Prochain rendez-vous
+Rendez-vous:
+Annule: Annulé(e)
+Maintenu: Maintenu(e)
+je_suis_invite: Je suis invité(e)
+Statut: Statut
+#Boutons
+Valider: 
+Retour: 
+Supprimer: 
+Approuver: 
+Refuser: 
+Dupliquer: 
+Afficher: 
+Modifier: 
+Imprimer: 
+Fermer: 
+Annuler: 
+Ajouter: 
+Enregistrer: 
+Sauvegarder:
+Sauvegarder et Afficher:
+Visualiser:
+Télécharger:
+Continuer:    
+Envoyer:
+show_action: Afficher l'entrée
+edit_action: Modifier l'entrée
+del_action: Supprimer l'entrée
+add_action: Ajouter une entrée
+Rafraichir: Rafraîchir
+#placehoder
+valid_from: Valable du
+valid_to: Valable au
+choix_options: Choisissez les options
+choix_option: Choisissez une option
+Entrez votre adresse ici pour remplir le formulaire ci-contre:
+Objet:
+#Type de société
+Gestion:
+Client:
+Fournisseur:
+Sous-traitant:
+Autre:
+Structure:
+
+#Table
+Adresse:
+adresse:
+Agenda:
+agenda: Agenda
+Alerte:
+alerte:
+Client:
+client:
+commentaire:
+Commentaire:
+Connexion:
+connexion:
+Contact:
+contact:
+Evenement: Agenda
+evenement: Agenda
+Fichier:
+fichier:
+Groupe:
+groupe:
+Menu:
+menu:
+Personne:
+personne:
+societe: Société
+Société: 
+fournisseur: Fournisseur
+gestionnaire: Gestionnaire
+client: Client
+sous-traitant: Sous-traitant
+soustraitant: Sous-traitant
+structure: Structure
+Signature:
+signature: 
+Post it: 
+calendrier:
+
+#champ
+Titre: 
+Description:
+Date debut: Date début
+Heure debut: Heure début
+Debut: Début
+Fin: Fin
+Ip: Ip
+Session:
+Lieu:
+Nom du groupe:
+Menus:
+Personnel structure:
+Auteur:
+Telephone: Téléphone
+Sexe:
+Nom:
+Prenom:
+Email:
+Fonction:
+numero_identification: Numéro identification
+Localite: Localité
+Region: Région
+Numero rue:
+Rue:
+Departement:
+Code postal:
+Adresse:
+Pays:
+Latitude:
+Longitude:
+Adresse de facturation:
+Mot de passe:
+Mot de passe (confirmation):
+Profil associé:
+Société(s) associée(s):
+Compte actif:
+Agenda:
+Invités:
+Parent: 
+Url: 
+Position:
+Class: Classe (css)
+Couleur:
+Expediteur: Expéditeur
+Destinataires:
+Cc:
+Cci:
+Objet:
+Message:
+Recevoir une copie:
+civilite: Civilité
+monsieur: Monsieur
+madame: Madame
+Identifiant: 
+Role: Rôle
+Anniversaire:
+Date:
+Heure:
+Lieu:
+Numero de rue: Numéro de rue
+Departement: Département
+Creation: Création
+Presentation: Présentation
+Interlocuteur:
+Contacter:
+Activite: Activité
+Identite: Identité
+journee_entiere: Journée entière
+couleur_fond: Couleur arrière plan
+couleur_texte: Couleur texte
+Statut: 
+Annule: Annulé
+
+#Page
+accueil:
+menu:
+    
+#Lien
+pass_oublie ?: Mot de passe oublié ?
+s_inscrire: Créer un compte
+Inscription: 
+Connexion:
+change_pass: Changement mot de passe
+
+#Menu
+Accueil: 
+Parametre: Paramètre
+Utilisateur: 
+Groupe: 
+Menu: 
+Connexion:
+Compte: 
+Profil:
+Securite: Sécurité
+Registre:
+Societe: Société
+Fournisseur: Fournisseur
+Gestion: 
+Client: 
+Sous-traitant: 

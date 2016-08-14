@@ -1,0 +1,78 @@
+email_send:
+    path:     /mail
+    defaults: { _controller: BaseMainBundle:Default:sendEmail}
+
+email_new:
+    path:     /newemail
+    defaults: { _controller: BaseMainBundle:Default:newEmail}
+agenda:
+    path:     /agenda
+    defaults: { _controller: BaseMainBundle:Default:agenda}    
+accueil:
+    path:     /accueil
+    defaults: { _controller: BaseMainBundle:Personne:index}
+    
+send_param:
+    path:     /session
+    defaults: { _controller: "BaseMainBundle:Default:param" }
+    methods:  POST
+
+profil:
+    path:     /profil
+    defaults: { _controller: BaseMainBundle:Personne:profil}
+profile:
+    path:     /profile
+    defaults: { _controller: BaseMainBundle:Personne:profil}    
+
+postit_index:
+    path:     /postit
+    defaults: { _controller: "BaseMainBundle:Commentaire:index" }
+    methods:  GET
+    
+base_main_adresse:
+    resource: "@BaseMainBundle/Resources/config/routing/adresse.yml"
+    prefix:   /adresse
+
+base_main_alerte:
+        resource: "@BaseMainBundle/Resources/config/routing/alerte.yml"
+        prefix:   /alerte
+
+base_main_connexion:
+        resource: "@BaseMainBundle/Resources/config/routing/connexion.yml"
+        prefix:   /connexion
+  
+base_main_evenement:
+        resource: "@BaseMainBundle/Resources/config/routing/evenement.yml"
+        prefix:   /evenement
+
+base_main_fichier:
+        resource: "@BaseMainBundle/Resources/config/routing/fichier.yml"
+        prefix:   /fichier
+ 
+base_main_groupe:
+        resource: "@BaseMainBundle/Resources/config/routing/groupe.yml"
+        prefix:   /groupe
+        
+base_main_menu:
+        resource: "@BaseMainBundle/Resources/config/routing/menu.yml"
+        prefix:   /menu
+
+base_main_personne:
+        resource: "@BaseMainBundle/Resources/config/routing/personne.yml"
+        prefix:   /personne
+        
+base_main_societe:
+        resource: "@BaseMainBundle/Resources/config/routing/societe.yml"
+        prefix:   /societe
+
+base_main_utilisateur:
+        resource: "@BaseMainBundle/Resources/config/routing/utilisateur.yml"
+        prefix:   /utilisateur
+ 
+base_main_commentaire:
+       resource: "@BaseMainBundle/Resources/config/routing/commentaire.yml"
+       prefix:   /commentaire
+ 
+base_main_secteur:
+        resource: "@BaseMainBundle/Resources/config/routing/secteur.yml"
+        prefix:   /secteur

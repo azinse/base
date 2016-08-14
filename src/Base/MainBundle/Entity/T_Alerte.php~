@@ -1,0 +1,256 @@
+<?php
+
+/*
+ * @Zinsè ATENOUKON
+ * 2016  * 
+ */
+namespace Base\MainBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
+use Doctrine\ORM\Mapping\HasLifecycleCallbacks;
+/**
+ * T_Alerte: table permettant de paramétrer les alertes
+ *@author zinse
+ * 
+ * @ORM\Table(name="t_alerte")
+ * @ORM\Entity
+ * @HasLifecycleCallbacks
+ * @ORM\Entity(repositoryClass="Base\MainBundle\Entity\T_AlerteRepository")
+ */
+class T_Alerte {
+    
+    /**
+     * @ORM\Id
+     * @ORM\Column(type="integer")
+     * @ORM\GeneratedValue(strategy="IDENTITY")
+     */
+    protected $id;
+
+     /**
+     * @var string $table
+     * @Assert\NotBlank()
+     * @ORM\Column(name="table", type="string",length=255, nullable=false)
+     */
+    private $table;
+
+    /**
+     * @var string $champ
+     * 
+     * @ORM\Column(name="champ", type="string", length=255, nullable=true)
+     */
+    private $champ;
+    
+    /**
+     * @var string $description
+     *
+     * @ORM\Column(name="description", type="text", nullable=true)
+     */
+    private $description;   
+    
+    /**
+     * @var string $titre
+     *
+     * @ORM\Column(name="titre", type="string", nullable=true)
+     */
+    private $titre;
+    
+    /**
+     * @var integer $identifiant
+     *
+     * @ORM\Column(name="identifiant", type="string", nullable=true)
+     */
+    private $identifiant;
+ 
+    /**
+     * @var string $reqfrom
+     *
+     * @ORM\Column(name="reqfrom", type="text", nullable=true)
+     */
+    private $reqfrom;
+    /**
+     * @var string $reqwhere
+     *
+     * @ORM\Column(name="reqwhere", type="text", nullable=true)
+     */
+    private $reqwhere;
+    
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set table
+     *
+     * @param string $table
+     *
+     * @return T_Alerte
+     */
+    public function setTable($table)
+    {
+        $this->table = $table;
+
+        return $this;
+    }
+
+    /**
+     * Get table
+     *
+     * @return string
+     */
+    public function getTable()
+    {
+        return $this->table;
+    }
+
+    /**
+     * Set champ
+     *
+     * @param string $champ
+     *
+     * @return T_Alerte
+     */
+    public function setChamp($champ)
+    {
+        $this->champ = $champ;
+
+        return $this;
+    }
+
+    /**
+     * Get champ
+     *
+     * @return string
+     */
+    public function getChamp()
+    {
+        return $this->champ;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     *
+     * @return T_Alerte
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string
+     */
+    public function getDescription()
+    {
+        return $this->description;
+    }
+
+    /**
+     * Set titre
+     *
+     * @param string $titre
+     *
+     * @return T_Alerte
+     */
+    public function setTitre($titre)
+    {
+        $this->titre = $titre;
+
+        return $this;
+    }
+
+    /**
+     * Get titre
+     *
+     * @return string
+     */
+    public function getTitre()
+    {
+        return $this->titre;
+    }
+
+    /**
+     * Set identifiant
+     *
+     * @param string $identifiant
+     *
+     * @return T_Alerte
+     */
+    public function setIdentifiant($identifiant)
+    {
+        $this->identifiant = $identifiant;
+
+        return $this;
+    }
+
+    /**
+     * Get identifiant
+     *
+     * @return string
+     */
+    public function getIdentifiant()
+    {
+        return $this->identifiant;
+    }
+
+    /**
+     * Set reqfrom
+     *
+     * @param string $reqfrom
+     *
+     * @return T_Alerte
+     */
+    public function setReqfrom($reqfrom)
+    {
+        $this->reqfrom = $reqfrom;
+
+        return $this;
+    }
+
+    /**
+     * Get reqfrom
+     *
+     * @return string
+     */
+    public function getReqfrom()
+    {
+        return $this->reqfrom;
+    }
+
+    /**
+     * Set reqwhere
+     *
+     * @param string $reqwhere
+     *
+     * @return T_Alerte
+     */
+    public function setReqwhere($reqwhere)
+    {
+        $this->reqwhere = $reqwhere;
+
+        return $this;
+    }
+
+    /**
+     * Get reqwhere
+     *
+     * @return string
+     */
+    public function getReqwhere()
+    {
+        return $this->reqwhere;
+    }
+}

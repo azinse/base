@@ -1,0 +1,89 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="row-fluid">
+        {%if app.request.get('_route') == 'commentaire_index'%}
+        <div class="span12"> 
+            <div id="content-body">
+                <h3 id="content-title" style="display: none;">{% set title = 'Commentaire'|trans ~ ' : ' ~ 'liste'|trans %}{{title|upper}}</h3>
+                <a id="" title="{{'add_action'|trans}}" class="btn btn-primary new-action"  href="{{path('commentaire_new')}}" ><i class="icon-plus"></i></a>
+                <table  class="liste display dataTable table table-condensed table-bordered table-striped" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>{{'Table'|trans}}</th>
+                            <th>{{'Commentaire'|trans}}</th>
+                            <th>{{'Creation'|trans}}</th>
+                            <th>{{'Responsable'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                        <tr id="filterrow" class="hidden-phone hidden-tablet">
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th></th>
+                            <th class="no-filtre"></th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>{{'Table'|trans}}</th>
+                            <th>{{'Commentaire'|trans}}</th>
+                            <th>{{'Creation'|trans}}</th>
+                            <th>{{'Responsable'|trans}}</th>
+                            <th>{{'Actions'|trans}}</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                    {% for commentaire in commentaires %}
+                        <tr class="item-line">
+                            <td>{{ commentaire.entite }}</td>
+                            <td>{{ commentaire.commentaire|raw }}</td>
+                            <td>{% if commentaire.datecreation %}{{ commentaire.datecreation|date('Y-m-d H:i:s') }}{% endif %}</td>
+                            <td>{{ commentaire.auteur }}</td>
+                            <td>
+                                <a  class="btn btn-mini btn-success edit-action" title="{{'edit_action'|trans}}" href="{{ path('commentaire_edit', { 'id': commentaire.id }) }}"><i class="icon-edit"></i></a>
+                                <a id="{{commentaire.id}}" title="{{'del_action'|trans}}" class="btn btn-mini btn-danger delete-link" href="{{ path('commentaire_delete', { 'id': commentaire.id }) }}"><i class="icon-trash"></i></a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        {% else%}
+            <div class="span3">
+                {%for com in commentaires%}
+                    {% if loop.index % 4 == 1 %}
+                    {% include 'commentaire/includepostit.html.twig' with {'commentaire': com}%}
+                    <div class="space15"></div>
+                    {%endif%}
+                {%endfor%}
+            </div>
+            <div class="span3">
+                {%for com in commentaires%}
+                    {% if loop.index % 4 == 2 %}
+                    {% include 'commentaire/includepostit.html.twig' with {'commentaire': com}%}
+                    <div class="space15"></div>
+                    {%endif%}
+                {%endfor%}
+            </div>
+            <div class="span3">
+                {%for com in commentaires%}
+                    {% if loop.index %4 == 3%}
+                    {% include 'commentaire/includepostit.html.twig' with {'commentaire': com}%}
+                    <div class="space15"></div>
+                    {%endif%}
+                {%endfor%}
+            </div>
+            <div class="span3">
+                {%for com in commentaires%}
+                    {% if loop.index % 4 == 0%}
+                    {% include 'commentaire/includepostit.html.twig' with {'commentaire': com}%}
+                    <div class="space15"></div>
+                    {%endif%}
+                {%endfor%}
+            </div>
+        {% endif%}
+    </div>
+{% endblock %}
+
